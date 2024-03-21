@@ -621,6 +621,8 @@ var module_default = SherpaJS.Load.module({
 var context = module_default.context;
 var segments = [{ "name": "module", "isDynamic": false }, { "name": "id", "isDynamic": true }, { "name": "path2", "isDynamic": false }];
 async function index(nativeRequest, event) {
+  console.log(nativeRequest.url);
+  console.log(nativeRequest.params);
   let req = await __internal__.RequestTransform.Vercel(nativeRequest, segments);
   let res = await __internal__.Handler(path2_exports, context, req);
   return __internal__.ResponseTransform.Vercel(res);
