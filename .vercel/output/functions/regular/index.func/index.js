@@ -198,7 +198,7 @@ var URLs = class {
   }
   static getInstance(url) {
     url = url.endsWith("/") ? url.slice(0, -1) : url;
-    return new URL(`https://example.com${url}`);
+    return new URL(url, "https://example.com");
   }
 };
 
@@ -257,7 +257,6 @@ var RequestUtilities = class {
     console.log(URLs.getPathname(url).split("/"));
     console.log(URLs.getPathname(url).split("/").filter((o) => o != ""));
     URLs.getPathname(url).split("/").filter((o) => o != "").forEach((value, index2) => {
-      console.log("loop", index2);
       if (segments2[index2].isDynamic) {
         let key = segments2[index2].name;
         let _value = this.parseParam(value);
