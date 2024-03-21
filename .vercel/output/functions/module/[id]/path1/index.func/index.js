@@ -210,8 +210,8 @@ var RequestUtilities = class {
     let parameters = [];
     for (let i = 0; i < segments2.length; i++) {
       if (segments2[i].isDynamic) {
-        paths.push(`(?<key-${i}>[a-zA-Z0-9,-_]+)`);
-        parameters.push(`$key-${i}`);
+        paths.push(`(?<key${i}>[a-zA-Z0-9,-_]+)`);
+        parameters.push(`$key${i}`);
       } else {
         paths.push(segments2[i].name);
       }
