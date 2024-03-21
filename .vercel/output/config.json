@@ -2,12 +2,12 @@
    "version": 3,
    "routes": [
       {
-         "src": "/module/(?<key1>[a-zA-Z0-9,-_]+)/path1",
-         "dest": "/module/[id]/path1?SHERPA-PARAMS=$key1"
+         "src": "/module/([a-zA-Z0-9,-_]+)/path1",
+         "dest": "/module/[id]/path1"
       },
       {
-         "src": "/module/(?<key1>[a-zA-Z0-9,-_]+)/path2",
-         "dest": "/module/[id]/path2?SHERPA-PARAMS=$key1"
+         "src": "/module/([a-zA-Z0-9,-_]+)/path2",
+         "dest": "/module/[id]/path2"
       }
    ]
 }
