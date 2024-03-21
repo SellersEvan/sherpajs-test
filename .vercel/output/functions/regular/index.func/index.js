@@ -251,7 +251,13 @@ var RequestUtilities = class {
   }
   static parseParamsPath(url, segments2) {
     let params = {};
+    console.log(url);
+    console.log(JSON.stringify(segments2));
+    console.log(URLs.getPathname(url));
+    console.log(URLs.getPathname(url).split("/"));
+    console.log(URLs.getPathname(url).split("/").filter((o) => o != ""));
     URLs.getPathname(url).split("/").filter((o) => o != "").forEach((value, index2) => {
+      console.log("loop", index2);
       if (segments2[index2].isDynamic) {
         let key = segments2[index2].name;
         let _value = this.parseParam(value);
