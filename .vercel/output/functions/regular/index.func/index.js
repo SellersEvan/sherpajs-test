@@ -251,11 +251,6 @@ var RequestUtilities = class {
   }
   static parseParamsPath(url, segments2) {
     let params = {};
-    console.log(url);
-    console.log(JSON.stringify(segments2));
-    console.log(URLs.getPathname(url));
-    console.log(URLs.getPathname(url).split("/"));
-    console.log(URLs.getPathname(url).split("/").filter((o) => o != ""));
     URLs.getPathname(url).split("/").filter((o) => o != "").forEach((value, index2) => {
       if (segments2[index2].isDynamic) {
         let key = segments2[index2].name;
@@ -377,15 +372,15 @@ var RequestTransform = class {
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/response/transformer.js
 var VercelResponse = Response;
 var ResponseTransform = class {
-  static Local(response, nativeResponse2) {
-    nativeResponse2.statusCode = response.status;
-    nativeResponse2.statusMessage = response.statusText;
+  static Local(response, nativeResponse) {
+    nativeResponse.statusCode = response.status;
+    nativeResponse.statusMessage = response.statusText;
     for (let [key, value] of Object.entries(response.headers)) {
       if (value) {
-        nativeResponse2.setHeader(key, value);
+        nativeResponse.setHeader(key, value);
       }
     }
-    nativeResponse2.end(this.getBody(response));
+    nativeResponse.end(this.getBody(response));
   }
   static Vercel(response) {
     return new VercelResponse(this.getBody(response), {
