@@ -203,40 +203,7 @@ var URLs = class {
 };
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/request/utilities.js
-var REDIRECT_PARAM_NAME = "SHERPA-PARAMS";
 var RequestUtilities = class {
-  static pathParamAsQueryParamRedirect(segments2) {
-    let paths = [];
-    let parameters = [];
-    for (let i = 0; i < segments2.length; i++) {
-      if (segments2[i].isDynamic) {
-        paths.push(`(?<key${i}>[a-zA-Z0-9,-_]+)`);
-        parameters.push(`$key${i}`);
-      } else {
-        paths.push(segments2[i].name);
-      }
-    }
-    let source = `/${paths.join("/")}`;
-    let destination = `/${this.getDynamicURL(segments2)}?${REDIRECT_PARAM_NAME}=${parameters.join(",")}`;
-    return { source, destination };
-  }
-  static pathParamAsQueryParamRedirectProcess(url, segments2) {
-    let parameters = URLs.getSearchParams(url);
-    if (!parameters.has(REDIRECT_PARAM_NAME)) {
-      return url;
-    }
-    let dynamicSegments = parameters.get(REDIRECT_PARAM_NAME);
-    let dynamicSegmentIndex = 0;
-    parameters.delete(REDIRECT_PARAM_NAME);
-    return `/${segments2.map((segment) => {
-      if (segment.isDynamic) {
-        dynamicSegmentIndex += 1;
-        return dynamicSegments[dynamicSegmentIndex - 1];
-      } else {
-        return segment.name;
-      }
-    }).join("/")}${parameters.size > 0 ? `?${parameters.toString()}` : ""}`;
-  }
   static getDynamicURL(segments2) {
     return segments2.map((segment) => {
       return segment.isDynamic ? `[${segment.name}]` : segment.name;
@@ -343,13 +310,12 @@ var RequestTransform = class {
     });
   }
   static async Vercel(req, segments2) {
-    let url = RequestUtilities.pathParamAsQueryParamRedirectProcess(req.url, segments2);
     let { body, bodyType } = await this.parseBodyVercel(req);
     return {
-      url: URLs.getPathname(url),
+      url: URLs.getPathname(req.url),
       params: {
-        path: RequestUtilities.parseParamsPath(url, segments2),
-        query: RequestUtilities.parseParamsQuery(url)
+        path: RequestUtilities.parseParamsPath(req.url, segments2),
+        query: RequestUtilities.parseParamsQuery(req.url)
       },
       method: req.method.toUpperCase(),
       headers: RequestUtilities.parseHeader(req.headers),
@@ -621,8 +587,6 @@ var module_default = SherpaJS.Load.module({
 var context = module_default.context;
 var segments = [{ "name": "module", "isDynamic": false }, { "name": "id", "isDynamic": true }, { "name": "path2", "isDynamic": false }];
 async function index(nativeRequest, event) {
-  console.log(nativeRequest.url);
-  console.log(nativeRequest.params);
   let req = await __internal__.RequestTransform.Vercel(nativeRequest, segments);
   let res = await __internal__.Handler(path2_exports, context, req);
   return __internal__.ResponseTransform.Vercel(res);
