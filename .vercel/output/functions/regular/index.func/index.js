@@ -338,6 +338,7 @@ var RequestTransform = class {
   }
   static async parseBodyVercel(req) {
     let contentType = req.headers.get("content-type");
+    console.log(req.body);
     if (!contentType) {
       return { body: void 0, bodyType: BodyType.None };
     }
