@@ -2,12 +2,12 @@
    "version": 3,
    "routes": [
       {
-         "src": "/module/([a-zA-Z0-9,-_]+)/path1",
-         "dest": "/module/[id]/path1"
+         "src": "/module/m2/([^/]+)/path",
+         "dest": "/module/m2/[id]/path"
       },
       {
-         "src": "/module/([a-zA-Z0-9,-_]+)/path2",
-         "dest": "/module/[id]/path2"
+         "src": "/regular/dynamic-paths/([^/]+)/([^/]+)/page/([^/]+)",
+         "dest": "/regular/dynamic-paths/[testID]/[testID]/page/[pageID]"
       }
    ]
 }
