@@ -25,12 +25,12 @@ module.exports = __toCommonJS(stdin_exports);
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/compiler/models.js
 var Method;
-(function(Method3) {
-  Method3["GET"] = "GET";
-  Method3["PUT"] = "PUT";
-  Method3["POST"] = "POST";
-  Method3["PATCH"] = "PATCH";
-  Method3["DELETE"] = "DELETE";
+(function(Method4) {
+  Method4["GET"] = "GET";
+  Method4["PUT"] = "PUT";
+  Method4["POST"] = "POST";
+  Method4["PATCH"] = "PATCH";
+  Method4["DELETE"] = "DELETE";
 })(Method || (Method = {}));
 var BundlerType;
 (function(BundlerType2) {
@@ -38,7 +38,7 @@ var BundlerType;
   BundlerType2["Local"] = "Local";
 })(BundlerType || (BundlerType = {}));
 
-// /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/headers.js
+// /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/headers/index.js
 var IHeaders = class _IHeaders {
   headers;
   constructor(init) {
@@ -111,10 +111,10 @@ var IHeaders = class _IHeaders {
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/model.js
 var BodyType;
-(function(BodyType3) {
-  BodyType3["JSON"] = "JSON";
-  BodyType3["Text"] = "Text";
-  BodyType3["None"] = "None";
+(function(BodyType4) {
+  BodyType4["JSON"] = "JSON";
+  BodyType4["Text"] = "Text";
+  BodyType4["None"] = "None";
 })(BodyType || (BodyType = {}));
 var CONTENT_TYPE = {
   [BodyType.JSON]: "application/json",
@@ -256,22 +256,10 @@ var Response2 = class _Response {
 };
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/compiler/utilities/url/index.js
-var URLs = class {
-  static getPathname(url, base) {
-    return this.getInstance(url, base).pathname;
-  }
-  static getSearchParams(url, base) {
-    return this.getInstance(url, base).searchParams;
-  }
-  static getHref(url, base) {
-    return this.getInstance(url, base).toString();
-  }
-  static getHrefNoParameters(url, base) {
-    let instance = this.getInstance(url, base);
-    return instance.origin + instance.pathname;
-  }
-  static getInstance(url, base) {
-    return new URL(url, base ? base : "https://example.com");
+var import_url = require("url");
+var OriginURL = class extends import_url.URL {
+  constructor(input, base) {
+    super(input, base ? base : "http://0.0");
   }
 };
 
@@ -284,7 +272,7 @@ var RequestUtilities = class {
   }
   static parseParamsPath(url, segments2) {
     let params = {};
-    URLs.getPathname(url).split("/").filter((o) => o != "").forEach((value, index2) => {
+    new OriginURL(url).pathname.split("/").filter((o) => o != "").forEach((value, index2) => {
       if (segments2[index2].isDynamic) {
         let key = segments2[index2].name;
         let _value = this.parseParam(value);
@@ -295,7 +283,7 @@ var RequestUtilities = class {
   }
   static parseParamsQuery(url) {
     let params = {};
-    URLs.getSearchParams(url).forEach((value, key) => {
+    new OriginURL(url).searchParams.forEach((value, key) => {
       this.setValue(params, key, this.parseParam(value));
     });
     return params;
@@ -336,7 +324,7 @@ var RequestTransform = class {
     let headers = new IHeaders(req.headers);
     let { body, bodyType } = await this.parseBodyLocal(req, headers);
     return {
-      url: URLs.getPathname(req.url),
+      url: new OriginURL(req.url).pathname,
       params: {
         path: RequestUtilities.parseParamsPath(req.url, segments2),
         query: RequestUtilities.parseParamsQuery(req.url)
@@ -384,7 +372,7 @@ var RequestTransform = class {
     let headers = new IHeaders(req.headers);
     let { body, bodyType } = await this.parseBodyVercel(req, headers);
     return {
-      url: URLs.getPathname(req.url),
+      url: new OriginURL(req.url).pathname,
       params: {
         path: RequestUtilities.parseParamsPath(req.url, segments2),
         query: RequestUtilities.parseParamsQuery(req.url)
@@ -446,9 +434,10 @@ var ResponseTransform = class {
       let host = request.headers.get("host");
       let protocol = host.toLowerCase().includes("localhost") ? "http" : "https";
       let origin = `${protocol}://${host}`;
-      let url = URLs.getHrefNoParameters(request.url, origin);
-      url = !url.endsWith("/") ? `${url}/` : url;
-      response.headers.set("Location", URLs.getHref(response.headers.get("Location"), url));
+      let url = new OriginURL(request.url, origin);
+      let path = url.origin + url.pathname;
+      path = !path.endsWith("/") ? `${path}/` : path;
+      response.headers.set("Location", new OriginURL(response.headers.get("Location"), path).href);
     }
   }
 };
@@ -484,24 +473,7 @@ __export(routes_exports, {
   GET: () => GET
 });
 
-// /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/instantiate/index.ts
-var New2 = class {
-  static server(config) {
-    return config;
-  }
-  static module(config) {
-    return config;
-  }
-};
-var Load2 = class {
-  //! FIXME - Load.module<boolean>("", true);
-  //! Consider this when writing docs and making context checker
-  static module(module2) {
-    return module2;
-  }
-};
-
-// /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/io/headers.ts
+// /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/io/headers/index.ts
 var IHeaders2 = class _IHeaders {
   headers;
   constructor(init) {
@@ -577,6 +549,23 @@ var CONTENT_TYPE2 = {
   ["JSON" /* JSON */]: "application/json",
   ["Text" /* Text */]: "text/plain",
   ["None" /* None */]: void 0
+};
+
+// /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/instantiate/index.ts
+var New2 = class {
+  static server(config) {
+    return config;
+  }
+  static module(config) {
+    return config;
+  }
+};
+var Load2 = class {
+  //! FIXME - Load.module<boolean>("", true);
+  //! Consider this when writing docs and making context checker
+  static module(module2) {
+    return module2;
+  }
 };
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/io/response/status-text.ts
