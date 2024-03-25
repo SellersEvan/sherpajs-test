@@ -25,12 +25,12 @@ module.exports = __toCommonJS(stdin_exports);
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/compiler/models.js
 var Method;
-(function(Method4) {
-  Method4["GET"] = "GET";
-  Method4["PUT"] = "PUT";
-  Method4["POST"] = "POST";
-  Method4["PATCH"] = "PATCH";
-  Method4["DELETE"] = "DELETE";
+(function(Method3) {
+  Method3["GET"] = "GET";
+  Method3["PUT"] = "PUT";
+  Method3["POST"] = "POST";
+  Method3["PATCH"] = "PATCH";
+  Method3["DELETE"] = "DELETE";
 })(Method || (Method = {}));
 var BundlerType;
 (function(BundlerType2) {
@@ -323,7 +323,8 @@ var RequestTransform = class {
     });
   }
   static async Vercel(req, segments2) {
-    let { body, bodyType } = await this.parseBodyVercel(req);
+    let headers = RequestUtilities.parseHeadersAsClass(req.headers);
+    let { body, bodyType } = await this.parseBodyVercel(req, headers);
     return {
       url: URLs.getPathname(req.url),
       params: {
@@ -331,14 +332,16 @@ var RequestTransform = class {
         query: RequestUtilities.parseParamsQuery(req.url)
       },
       method: req.method.toUpperCase(),
-      headers: RequestUtilities.parseHeadersAsClass(req.headers),
+      headers,
       body,
       bodyType
     };
   }
-  static async parseBodyVercel(req) {
-    let contentType = req.headers.get("content-type");
-    console.log(req.body);
+  static async parseBodyVercel(req, headers) {
+    if (req.method.toUpperCase() == Method.GET) {
+      return { body: void 0, bodyType: BodyType.None };
+    }
+    let contentType = RequestUtilities.getAttribute(headers, "content-type");
     if (!contentType) {
       return { body: void 0, bodyType: BodyType.None };
     }
