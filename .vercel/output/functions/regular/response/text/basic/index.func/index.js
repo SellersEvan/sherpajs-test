@@ -257,18 +257,18 @@ var Response2 = class _Response {
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/compiler/utilities/url/index.js
 var URLs = class {
-  static getPathname(url) {
-    let path = this.getInstance(url).pathname;
-    path = path.replace(/\/\.\//g, "/");
-    path = path.replace(/\/[^/]+\/\.\.\//g, "/");
-    return path;
+  static getPathname(url, base) {
+    return this.getInstance(url, base).pathname;
   }
-  static getSearchParams(url) {
-    return this.getInstance(url).searchParams;
+  static getSearchParams(url, base) {
+    return this.getInstance(url, base).searchParams;
   }
-  static getInstance(url) {
+  static toString(url, base) {
+    return this.getInstance(url, base).toString();
+  }
+  static getInstance(url, base) {
     url = url.endsWith("/") ? url.slice(0, -1) : url;
-    return new URL(url, "https://example.com");
+    return new URL(url, base ? base : "https://example.com");
   }
 };
 
@@ -331,6 +331,9 @@ var RequestTransform = class {
       throw new Error("Missing URL and Methods");
     }
     let headers = new IHeaders(req.headers);
+    if (headers.has("Location")) {
+      headers.set("Location", URLs.toString(headers.get("Location"), req.url));
+    }
     let { body, bodyType } = await this.parseBodyLocal(req, headers);
     return {
       url: URLs.getPathname(req.url),
@@ -379,6 +382,9 @@ var RequestTransform = class {
   }
   static async Vercel(req, segments2) {
     let headers = new IHeaders(req.headers);
+    if (headers.has("Location")) {
+      headers.set("Location", URLs.toString(headers.get("Location"), req.url));
+    }
     let { body, bodyType } = await this.parseBodyVercel(req, headers);
     return {
       url: URLs.getPathname(req.url),
