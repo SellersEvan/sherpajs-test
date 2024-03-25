@@ -382,6 +382,7 @@ var RequestTransform = class {
   }
   static async Vercel(req, segments2) {
     let headers = new IHeaders(req.headers);
+    console.log(headers.entries());
     if (headers.has("Location")) {
       console.log(URLs.toString(headers.get("Location"), req.url));
       headers.set("Location", URLs.toString(headers.get("Location"), req.url));
