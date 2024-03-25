@@ -319,7 +319,7 @@ var RequestTransform = class {
     console.log(JSON.stringify(req));
     console.log(req);
     console.log(req.url);
-    let { body, bodyType } = await this.parseBodyVercel(req);
+    // let { body, bodyType } = await this.parseBodyVercel(req);
     req.headers.forEach((value, key) => {
       console.log(value, key);
     });
@@ -331,8 +331,8 @@ var RequestTransform = class {
       },
       method: req.method.toUpperCase(),
       headers: RequestUtilities.parseHeader(req.headers),
-      body,
-      bodyType
+      body: void 0,
+      bodyType: BodyType.None
     };
   }
   static async parseBodyVercel(req) {
