@@ -38,6 +38,77 @@ var BundlerType;
   BundlerType2["Local"] = "Local";
 })(BundlerType || (BundlerType = {}));
 
+// /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/headers.js
+var IHeaders = class _IHeaders {
+  headers;
+  constructor(init) {
+    this.headers = {};
+    if (init) {
+      if (init instanceof Headers || init instanceof _IHeaders) {
+        init.forEach((value, name) => {
+          this.set(name, value);
+        });
+      } else if (Array.isArray(init)) {
+        init.forEach(([name, value]) => {
+          this.append(name, value);
+        });
+      } else {
+        Object.entries(init).forEach(([name, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((v) => this.append(name, v));
+          } else {
+            this.set(name, value);
+          }
+        });
+      }
+    }
+  }
+  append(name, value) {
+    let normalizedName = name.toLowerCase();
+    this.headers[normalizedName] = this.headers[normalizedName] ? `${this.headers[normalizedName]}, ${value}` : value;
+  }
+  has(name) {
+    return this.get(name) != null;
+  }
+  get(name) {
+    return this.headers[name.toLowerCase()] || null;
+  }
+  set(name, value) {
+    this.headers[name.toLowerCase()] = value;
+  }
+  delete(name) {
+    delete this.headers[name.toLowerCase()];
+  }
+  toJSON() {
+    return { ...this.headers };
+  }
+  toString() {
+    return JSON.stringify(this.headers);
+  }
+  getSetCookie() {
+    return Object.entries(this.headers).filter(([name]) => name.toLowerCase() === "set-cookie").flatMap(([_, value]) => value.split(", "));
+  }
+  forEach(callbackfn, thisArg) {
+    for (const [name, value] of Object.entries(this.headers)) {
+      callbackfn.call(thisArg, value, name, this);
+    }
+  }
+  keys() {
+    return Object.keys(this.headers)[Symbol.iterator]();
+  }
+  values() {
+    return Object.values(this.headers)[Symbol.iterator]();
+  }
+  entries() {
+    return Object.entries(this.headers)[Symbol.iterator]();
+  }
+  *[Symbol.iterator]() {
+    for (const [name, value] of Object.entries(this.headers)) {
+      yield [name, value];
+    }
+  }
+};
+
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/model.js
 var BodyType;
 (function(BodyType3) {
@@ -118,7 +189,7 @@ var STATUS_TEXT = {
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/response/index.js
 var DEFAULT_OPTIONS = {
-  headers: {},
+  headers: new IHeaders(),
   status: 200
 };
 var Response2 = class _Response {
@@ -154,13 +225,13 @@ var Response2 = class _Response {
   }
   static redirect(redirect, options) {
     let _options = _Response.defaultOptions(BodyType.None, options);
+    if (!_options.headers.has("Location")) {
+      _options.headers.set("Location", redirect);
+    }
     return {
       status: 302,
       statusText: _Response.getStatusText(302),
-      headers: {
-        "Location": redirect,
-        ..._options.headers
-      },
+      headers: _options.headers,
       body: void 0,
       bodyType: BodyType.None
     };
@@ -170,10 +241,9 @@ var Response2 = class _Response {
       ...DEFAULT_OPTIONS,
       ...options
     };
-    _options.headers = {
-      "Content-Type": CONTENT_TYPE[bodyType],
-      ..._options.headers
-    };
+    if (!_options.headers.has("Content-Type")) {
+      _options.headers.set("Content-Type", CONTENT_TYPE[bodyType]);
+    }
     return _options;
   }
   static getStatusText(status) {
@@ -208,20 +278,6 @@ var RequestUtilities = class {
     return segments2.map((segment) => {
       return segment.isDynamic ? `[${segment.name}]` : segment.name;
     }).join("/");
-  }
-  static parseHeadersAsClass(headers) {
-    let _headers = {};
-    headers.forEach((key, value) => {
-      _headers[key] = value;
-    });
-    return _headers;
-  }
-  static parseHeaderAsObject(headers) {
-    let _headers = {};
-    Object.keys(headers).forEach((key) => {
-      _headers[key] = headers[key];
-    });
-    return _headers;
   }
   static parseParamsPath(url, segments2) {
     let params = {};
@@ -266,12 +322,6 @@ var RequestUtilities = class {
       return [value];
     }
   }
-  static getAttribute(object, attributeName) {
-    const keys = Object.keys(object);
-    const lowerAttributeName = attributeName.toLowerCase();
-    const matchingKey = keys.find((key) => key.toLowerCase() === lowerAttributeName);
-    return matchingKey ? object[matchingKey] : void 0;
-  }
 };
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/dist/src/environment/io/request/transformer.js
@@ -280,7 +330,8 @@ var RequestTransform = class {
     if (!req.url || !req.method) {
       throw new Error("Missing URL and Methods");
     }
-    let { body, bodyType } = await this.parseBodyLocal(req);
+    let headers = new IHeaders(req.headers);
+    let { body, bodyType } = await this.parseBodyLocal(req, headers);
     return {
       url: URLs.getPathname(req.url),
       params: {
@@ -288,12 +339,12 @@ var RequestTransform = class {
         query: RequestUtilities.parseParamsQuery(req.url)
       },
       method: req.method.toUpperCase(),
-      headers: RequestUtilities.parseHeaderAsObject(req.headers),
+      headers,
       body,
       bodyType
     };
   }
-  static parseBodyLocal(req) {
+  static parseBodyLocal(req, headers) {
     return new Promise((resolve, reject) => {
       let body = "";
       let bodyType = BodyType.Text;
@@ -301,7 +352,7 @@ var RequestTransform = class {
         body += chunk.toString();
       });
       req.on("end", () => {
-        let contentType = RequestUtilities.getAttribute(req.headers, "content-type");
+        let contentType = (headers.get("Content-Type") || "").toLowerCase();
         if (!contentType || body == "") {
           resolve({
             body: void 0,
@@ -323,7 +374,7 @@ var RequestTransform = class {
     });
   }
   static async Vercel(req, segments2) {
-    let headers = RequestUtilities.parseHeadersAsClass(req.headers);
+    let headers = new IHeaders(req.headers);
     let { body, bodyType } = await this.parseBodyVercel(req, headers);
     return {
       url: URLs.getPathname(req.url),
@@ -341,7 +392,7 @@ var RequestTransform = class {
     if (req.method.toUpperCase() == Method.GET) {
       return { body: void 0, bodyType: BodyType.None };
     }
-    let contentType = RequestUtilities.getAttribute(headers, "content-type");
+    let contentType = (headers.get("Content-Type") || "").toLowerCase();
     if (!contentType) {
       return { body: void 0, bodyType: BodyType.None };
     }
@@ -431,6 +482,77 @@ var Load2 = class {
   }
 };
 
+// /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/io/headers.ts
+var IHeaders2 = class _IHeaders {
+  headers;
+  constructor(init) {
+    this.headers = {};
+    if (init) {
+      if (init instanceof Headers || init instanceof _IHeaders) {
+        init.forEach((value, name) => {
+          this.set(name, value);
+        });
+      } else if (Array.isArray(init)) {
+        init.forEach(([name, value]) => {
+          this.append(name, value);
+        });
+      } else {
+        Object.entries(init).forEach(([name, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((v) => this.append(name, v));
+          } else {
+            this.set(name, value);
+          }
+        });
+      }
+    }
+  }
+  append(name, value) {
+    let normalizedName = name.toLowerCase();
+    this.headers[normalizedName] = this.headers[normalizedName] ? `${this.headers[normalizedName]}, ${value}` : value;
+  }
+  has(name) {
+    return this.get(name) != null;
+  }
+  get(name) {
+    return this.headers[name.toLowerCase()] || null;
+  }
+  set(name, value) {
+    this.headers[name.toLowerCase()] = value;
+  }
+  delete(name) {
+    delete this.headers[name.toLowerCase()];
+  }
+  toJSON() {
+    return { ...this.headers };
+  }
+  toString() {
+    return JSON.stringify(this.headers);
+  }
+  getSetCookie() {
+    return Object.entries(this.headers).filter(([name]) => name.toLowerCase() === "set-cookie").flatMap(([_, value]) => value.split(", "));
+  }
+  forEach(callbackfn, thisArg) {
+    for (const [name, value] of Object.entries(this.headers)) {
+      callbackfn.call(thisArg, value, name, this);
+    }
+  }
+  keys() {
+    return Object.keys(this.headers)[Symbol.iterator]();
+  }
+  values() {
+    return Object.values(this.headers)[Symbol.iterator]();
+  }
+  entries() {
+    return Object.entries(this.headers)[Symbol.iterator]();
+  }
+  *[Symbol.iterator]() {
+    for (const [name, value] of Object.entries(this.headers)) {
+      yield [name, value];
+    }
+  }
+};
+
 // /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/io/model.ts
 var CONTENT_TYPE2 = {
   ["JSON" /* JSON */]: "application/json",
@@ -505,7 +627,7 @@ var STATUS_TEXT2 = {
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/src/environment/io/response/index.ts
 var DEFAULT_OPTIONS2 = {
-  headers: {},
+  headers: new IHeaders2(),
   status: 200
 };
 var Response3 = class _Response {
@@ -541,13 +663,13 @@ var Response3 = class _Response {
   }
   static redirect(redirect, options) {
     let _options = _Response.defaultOptions("None" /* None */, options);
+    if (!_options.headers.has("Location")) {
+      _options.headers.set("Location", redirect);
+    }
     return {
       status: 302,
       statusText: _Response.getStatusText(302),
-      headers: {
-        "Location": redirect,
-        ..._options.headers
-      },
+      headers: _options.headers,
       body: void 0,
       bodyType: "None" /* None */
     };
@@ -557,10 +679,9 @@ var Response3 = class _Response {
       ...DEFAULT_OPTIONS2,
       ...options
     };
-    _options.headers = {
-      "Content-Type": CONTENT_TYPE2[bodyType],
-      ..._options.headers
-    };
+    if (!_options.headers.has("Content-Type")) {
+      _options.headers.set("Content-Type", CONTENT_TYPE2[bodyType]);
+    }
     return _options;
   }
   static getStatusText(status) {
