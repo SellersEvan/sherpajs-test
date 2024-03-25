@@ -705,7 +705,7 @@ var SherpaJS = {
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/redirect/basic/index.ts
 function GET() {
-  return Response3.redirect("./success");
+  return Response3.redirect("../success");
 }
 
 // /Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts
