@@ -346,6 +346,10 @@ var RequestTransform = class {
   }
   static parseBodyLocal(req, headers) {
     return new Promise((resolve, reject) => {
+      if (req.method.toUpperCase() == Method.GET) {
+        resolve({ body: void 0, bodyType: BodyType.None });
+        return;
+      }
       let body = "";
       let bodyType = BodyType.Text;
       req.on("data", (chunk) => {
@@ -409,7 +413,7 @@ var ResponseTransform = class {
   static Local(response, nativeResponse) {
     nativeResponse.statusCode = response.status;
     nativeResponse.statusMessage = response.statusText;
-    for (let [key, value] of Object.entries(response.headers)) {
+    for (let [key, value] of response.headers.entries()) {
       if (value) {
         nativeResponse.setHeader(key, value);
       }
