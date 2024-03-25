@@ -209,7 +209,14 @@ var RequestUtilities = class {
       return segment.isDynamic ? `[${segment.name}]` : segment.name;
     }).join("/");
   }
-  static parseHeader(headers) {
+  static parseHeadersAsClass(headers) {
+    let _headers = {};
+    headers.forEach((key, value) => {
+      _headers[key] = value;
+    });
+    return _headers;
+  }
+  static parseHeaderAsObject(headers) {
     let _headers = {};
     Object.keys(headers).forEach((key) => {
       _headers[key] = headers[key];
@@ -281,7 +288,7 @@ var RequestTransform = class {
         query: RequestUtilities.parseParamsQuery(req.url)
       },
       method: req.method.toUpperCase(),
-      headers: RequestUtilities.parseHeader(req.headers),
+      headers: RequestUtilities.parseHeaderAsObject(req.headers),
       body,
       bodyType
     };
@@ -316,13 +323,7 @@ var RequestTransform = class {
     });
   }
   static async Vercel(req, segments2) {
-    console.log(JSON.stringify(req));
-    console.log(req);
-    console.log(req.url);
     let { body, bodyType } = await this.parseBodyVercel(req);
-    req.headers.forEach((value, key) => {
-      console.log(value, key);
-    });
     return {
       url: URLs.getPathname(req.url),
       params: {
@@ -330,14 +331,12 @@ var RequestTransform = class {
         query: RequestUtilities.parseParamsQuery(req.url)
       },
       method: req.method.toUpperCase(),
-      headers: RequestUtilities.parseHeader(req.headers),
+      headers: RequestUtilities.parseHeadersAsClass(req.headers),
       body,
       bodyType
     };
   }
   static async parseBodyVercel(req) {
-    console.log(JSON.stringify(req));
-    console.log(JSON.stringify(req.headers));
     let contentType = req.headers.get("content-type");
     if (!contentType) {
       return { body: void 0, bodyType: BodyType.None };
@@ -595,9 +594,6 @@ var m2_default = SherpaJS.Load.module({
 var context = m2_default.context;
 var segments = [{ "name": "module", "isDynamic": false }, { "name": "m2", "isDynamic": false }];
 async function index(nativeRequest, event) {
-  console.log(nativeRequest.headers);
-  console.log(nativeRequest.headers.host);
-  console.log(JSON.stringify(nativeRequest.headers));
   let req = await __internal__.RequestTransform.Vercel(nativeRequest, segments);
   let res = await __internal__.Handler(routes_exports, context, req);
   return __internal__.ResponseTransform.Vercel(res);
