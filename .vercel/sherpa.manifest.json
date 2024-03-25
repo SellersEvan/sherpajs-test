@@ -1,5 +1,5 @@
 {
-    "created": "2024-03-25T12:55:58.070Z",
+    "created": "2024-03-25T12:57:35.047Z",
     "options": {
         "input": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
         "output": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
@@ -7,7 +7,7 @@
         "developer": {
             "bundler": {
                 "esbuild": {
-                    "minify": true
+                    "minify": false
                 }
             }
         }
