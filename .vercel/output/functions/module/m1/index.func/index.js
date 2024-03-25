@@ -263,11 +263,14 @@ var URLs = class {
   static getSearchParams(url, base) {
     return this.getInstance(url, base).searchParams;
   }
-  static toString(url, base) {
+  static getHref(url, base) {
     return this.getInstance(url, base).toString();
   }
+  static getHrefNoParameters(url, base) {
+    let instance = this.getInstance(url, base);
+    return instance.origin + instance.pathname;
+  }
   static getInstance(url, base) {
-    url = url.endsWith("/") ? url.slice(0, -1) : url;
     return new URL(url, base ? base : "https://example.com");
   }
 };
@@ -422,6 +425,7 @@ var ResponseTransform = class {
     nativeResponse.end(this.getBody(response));
   }
   static Vercel(request, response) {
+    this.applyRedirectHeaders(request, response);
     return new VercelResponse(this.getBody(response), {
       headers: response.headers,
       status: response.status,
@@ -439,7 +443,12 @@ var ResponseTransform = class {
   }
   static applyRedirectHeaders(request, response) {
     if (response.headers.has("Location")) {
-      response.headers.set("Location", URLs.toString(response.headers.get("Location"), request.url));
+      let host = request.headers.get("host");
+      let protocol = host.toLowerCase().includes("localhost") ? "http" : "https";
+      let origin = `${protocol}://${host}`;
+      let url = URLs.getHrefNoParameters(request.url, origin);
+      url = !url.endsWith("/") ? `${url}/` : url;
+      response.headers.set("Location", URLs.getHref(response.headers.get("Location"), url));
     }
   }
 };
