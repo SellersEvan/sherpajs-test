@@ -1,135 +1,459 @@
 {
-    "created": "2024-03-25T17:05:52.387Z",
+    "created": "2024-04-23T12:44:31.851Z",
     "options": {
-        "input": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-        "output": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
+        "input": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+        "output": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
         "bundler": "Vercel",
         "developer": {
             "bundler": {
                 "esbuild": {
-                    "minify": false
+                    "minify": true
                 }
+            },
+            "environment": {
+                "files": [
+                    "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/.env"
+                ],
+                "variables": {}
             }
         }
     },
-    "route": {
-        "module": {
-            "m1": {
-                ".": {
-                    "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-1/routes/index.ts",
-                    "methods": [
-                        "GET"
-                    ],
-                    "module": {
-                        "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-1/sherpa.module.ts",
-                        "context": {
-                            "test": "Hello World"
+    "endpoints": {
+        "tree": {
+            "/module": {
+                "/m1": {
+                    ".": {
+                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-1/routes/index.ts",
+                        "methods": [],
+                        "module": {
+                            "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-1",
+                            "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-1/sherpa.module.ts",
+                            "context": {
+                                "test": "Hello World"
+                            },
+                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m1/index.ts",
+                            "instance": {
+                                "name": "pass-primary-1"
+                            }
                         },
-                        "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/module/m1/index.ts",
-                        "config": {
-                            "name": "pass-primary-1"
+                        "segments": [
+                            {
+                                "name": "module",
+                                "isDynamic": false
+                            },
+                            {
+                                "name": "m1",
+                                "isDynamic": false
+                            }
+                        ]
+                    }
+                },
+                "/m2": {
+                    ".": {
+                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/index.ts",
+                        "methods": [],
+                        "module": {
+                            "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2",
+                            "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/sherpa.module.ts",
+                            "context": {
+                                "test": true
+                            },
+                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                            "instance": {
+                                "name": "pass-primary-2"
+                            }
                         },
-                        "hasContextSchema": false
+                        "segments": [
+                            {
+                                "name": "module",
+                                "isDynamic": false
+                            },
+                            {
+                                "name": "m2",
+                                "isDynamic": false
+                            }
+                        ]
                     },
-                    "segments": [
-                        {
-                            "name": "module",
-                            "isDynamic": false
-                        },
-                        {
-                            "name": "m1",
-                            "isDynamic": false
+                    "/[id]": {
+                        "/path": {
+                            ".": {
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/[id]/path/index.ts",
+                                "methods": [],
+                                "module": {
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/sherpa.module.ts",
+                                    "context": {
+                                        "test": true
+                                    },
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                                    "instance": {
+                                        "name": "pass-primary-2"
+                                    }
+                                },
+                                "segments": [
+                                    {
+                                        "name": "module",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "m2",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "id",
+                                        "isDynamic": true
+                                    },
+                                    {
+                                        "name": "path",
+                                        "isDynamic": false
+                                    }
+                                ]
+                            }
                         }
-                    ]
+                    }
                 }
             },
-            "m2": {
+            "/regular": {
                 ".": {
-                    "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/routes/index.ts",
-                    "methods": [
-                        "GET"
-                    ],
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/index.ts",
+                    "methods": [],
                     "module": {
-                        "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/sherpa.module.ts",
-                        "context": {
-                            "test": true
-                        },
-                        "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/module/m2/index.ts",
-                        "config": {
-                            "name": "pass-primary-2"
-                        },
-                        "hasContextSchema": true
+                        "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                        "context": "foo",
+                        "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                        "instance": {
+                            "name": "."
+                        }
                     },
                     "segments": [
                         {
-                            "name": "module",
-                            "isDynamic": false
-                        },
-                        {
-                            "name": "m2",
+                            "name": "regular",
                             "isDynamic": false
                         }
                     ]
                 },
-                "[id]": {
-                    "path": {
-                        ".": {
-                            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/routes/[id]/path/index.ts",
-                            "methods": [
-                                "GET"
-                            ],
-                            "module": {
-                                "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/sherpa.module.ts",
-                                "context": {
-                                    "test": true
-                                },
-                                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/module/m2/index.ts",
-                                "config": {
-                                    "name": "pass-primary-2"
-                                },
-                                "hasContextSchema": true
-                            },
-                            "segments": [
-                                {
-                                    "name": "module",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "m2",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "id",
-                                    "isDynamic": true
-                                },
-                                {
-                                    "name": "path",
-                                    "isDynamic": false
+                "/dynamic-paths": {
+                    "/[testID]": {
+                        "/[testID]": {
+                            "/page": {
+                                "/[pageID]": {
+                                    ".": {
+                                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
+                                        "methods": [],
+                                        "module": {
+                                            "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                            "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                            "context": "foo",
+                                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                            "instance": {
+                                                "name": "."
+                                            }
+                                        },
+                                        "segments": [
+                                            {
+                                                "name": "regular",
+                                                "isDynamic": false
+                                            },
+                                            {
+                                                "name": "dynamic-paths",
+                                                "isDynamic": false
+                                            },
+                                            {
+                                                "name": "testID",
+                                                "isDynamic": true
+                                            },
+                                            {
+                                                "name": "testID",
+                                                "isDynamic": true
+                                            },
+                                            {
+                                                "name": "page",
+                                                "isDynamic": false
+                                            },
+                                            {
+                                                "name": "pageID",
+                                                "isDynamic": true
+                                            }
+                                        ]
+                                    }
                                 }
-                            ]
+                            }
+                        }
+                    }
+                },
+                "/response": {
+                    "/json": {
+                        "/basic": {
+                            ".": {
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/json/basic/index.ts",
+                                "methods": [],
+                                "module": {
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "context": "foo",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "instance": {
+                                        "name": "."
+                                    }
+                                },
+                                "segments": [
+                                    {
+                                        "name": "regular",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "response",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "json",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "basic",
+                                        "isDynamic": false
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "/none": {
+                        "/basic": {
+                            ".": {
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/none/basic/index.ts",
+                                "methods": [],
+                                "module": {
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "context": "foo",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "instance": {
+                                        "name": "."
+                                    }
+                                },
+                                "segments": [
+                                    {
+                                        "name": "regular",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "response",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "none",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "basic",
+                                        "isDynamic": false
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "/redirect": {
+                        "/basic": {
+                            ".": {
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/basic/index.ts",
+                                "methods": [],
+                                "module": {
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "context": "foo",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "instance": {
+                                        "name": "."
+                                    }
+                                },
+                                "segments": [
+                                    {
+                                        "name": "regular",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "response",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "redirect",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "basic",
+                                        "isDynamic": false
+                                    }
+                                ]
+                            }
+                        },
+                        "/success": {
+                            ".": {
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts",
+                                "methods": [],
+                                "module": {
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "context": "foo",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "instance": {
+                                        "name": "."
+                                    }
+                                },
+                                "segments": [
+                                    {
+                                        "name": "regular",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "response",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "redirect",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "success",
+                                        "isDynamic": false
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "/text": {
+                        "/basic": {
+                            ".": {
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/text/basic/index.ts",
+                                "methods": [],
+                                "module": {
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "context": "foo",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "instance": {
+                                        "name": "."
+                                    }
+                                },
+                                "segments": [
+                                    {
+                                        "name": "regular",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "response",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "text",
+                                        "isDynamic": false
+                                    },
+                                    {
+                                        "name": "basic",
+                                        "isDynamic": false
+                                    }
+                                ]
+                            }
                         }
                     }
                 }
             }
         },
-        "regular": {
-            ".": {
-                "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/index.ts",
-                "methods": [
-                    "GET",
-                    "POST",
-                    "PUT",
-                    "PATCH",
-                    "DELETE"
-                ],
+        "list": [
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-1/routes/index.ts",
+                "methods": [],
                 "module": {
-                    "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                    "context": "foo",
-                    "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                    "config": {
-                        "name": "."
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-1",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-1/sherpa.module.ts",
+                    "context": {
+                        "test": "Hello World"
                     },
-                    "hasContextSchema": false
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m1/index.ts",
+                    "instance": {
+                        "name": "pass-primary-1"
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "module",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "m1",
+                        "isDynamic": false
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/sherpa.module.ts",
+                    "context": {
+                        "test": true
+                    },
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                    "instance": {
+                        "name": "pass-primary-2"
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "module",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "m2",
+                        "isDynamic": false
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/[id]/path/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/sherpa.module.ts",
+                    "context": {
+                        "test": true
+                    },
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                    "instance": {
+                        "name": "pass-primary-2"
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "module",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "m2",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "id",
+                        "isDynamic": true
+                    },
+                    {
+                        "name": "path",
+                        "isDynamic": false
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
+                    }
                 },
                 "segments": [
                     {
@@ -138,565 +462,201 @@
                     }
                 ]
             },
-            "dynamic-paths": {
-                "[testID]": {
-                    "[testID]": {
-                        "page": {
-                            "[pageID]": {
-                                ".": {
-                                    "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
-                                    "methods": [
-                                        "GET"
-                                    ],
-                                    "module": {
-                                        "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                                        "context": "foo",
-                                        "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                                        "config": {
-                                            "name": "."
-                                        },
-                                        "hasContextSchema": false
-                                    },
-                                    "segments": [
-                                        {
-                                            "name": "regular",
-                                            "isDynamic": false
-                                        },
-                                        {
-                                            "name": "dynamic-paths",
-                                            "isDynamic": false
-                                        },
-                                        {
-                                            "name": "testID",
-                                            "isDynamic": true
-                                        },
-                                        {
-                                            "name": "testID",
-                                            "isDynamic": true
-                                        },
-                                        {
-                                            "name": "page",
-                                            "isDynamic": false
-                                        },
-                                        {
-                                            "name": "pageID",
-                                            "isDynamic": true
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "response": {
-                "json": {
-                    "basic": {
-                        ".": {
-                            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/json/basic/index.ts",
-                            "methods": [
-                                "GET"
-                            ],
-                            "module": {
-                                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                                "context": "foo",
-                                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                                "config": {
-                                    "name": "."
-                                },
-                                "hasContextSchema": false
-                            },
-                            "segments": [
-                                {
-                                    "name": "regular",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "response",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "json",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "basic",
-                                    "isDynamic": false
-                                }
-                            ]
-                        }
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
                     }
                 },
-                "none": {
-                    "basic": {
-                        ".": {
-                            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/none/basic/index.ts",
-                            "methods": [
-                                "GET"
-                            ],
-                            "module": {
-                                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                                "context": "foo",
-                                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                                "config": {
-                                    "name": "."
-                                },
-                                "hasContextSchema": false
-                            },
-                            "segments": [
-                                {
-                                    "name": "regular",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "response",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "none",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "basic",
-                                    "isDynamic": false
-                                }
-                            ]
-                        }
-                    }
-                },
-                "redirect": {
-                    "basic": {
-                        ".": {
-                            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/redirect/basic/index.ts",
-                            "methods": [
-                                "GET"
-                            ],
-                            "module": {
-                                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                                "context": "foo",
-                                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                                "config": {
-                                    "name": "."
-                                },
-                                "hasContextSchema": false
-                            },
-                            "segments": [
-                                {
-                                    "name": "regular",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "response",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "redirect",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "basic",
-                                    "isDynamic": false
-                                }
-                            ]
-                        }
+                "segments": [
+                    {
+                        "name": "regular",
+                        "isDynamic": false
                     },
-                    "success": {
-                        ".": {
-                            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts",
-                            "methods": [
-                                "GET"
-                            ],
-                            "module": {
-                                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                                "context": "foo",
-                                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                                "config": {
-                                    "name": "."
-                                },
-                                "hasContextSchema": false
-                            },
-                            "segments": [
-                                {
-                                    "name": "regular",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "response",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "redirect",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "success",
-                                    "isDynamic": false
-                                }
-                            ]
-                        }
+                    {
+                        "name": "dynamic-paths",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "testID",
+                        "isDynamic": true
+                    },
+                    {
+                        "name": "testID",
+                        "isDynamic": true
+                    },
+                    {
+                        "name": "page",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "pageID",
+                        "isDynamic": true
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/json/basic/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
                     }
                 },
-                "text": {
-                    "basic": {
-                        ".": {
-                            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/text/basic/index.ts",
-                            "methods": [
-                                "GET"
-                            ],
-                            "module": {
-                                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                                "context": "foo",
-                                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                                "config": {
-                                    "name": "."
-                                },
-                                "hasContextSchema": false
-                            },
-                            "segments": [
-                                {
-                                    "name": "regular",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "response",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "text",
-                                    "isDynamic": false
-                                },
-                                {
-                                    "name": "basic",
-                                    "isDynamic": false
-                                }
-                            ]
-                        }
+                "segments": [
+                    {
+                        "name": "regular",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "response",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "json",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "basic",
+                        "isDynamic": false
                     }
-                }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/none/basic/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "regular",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "response",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "none",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "basic",
+                        "isDynamic": false
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/basic/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "regular",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "response",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "redirect",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "basic",
+                        "isDynamic": false
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "regular",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "response",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "redirect",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "success",
+                        "isDynamic": false
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/text/basic/index.ts",
+                "methods": [],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "regular",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "response",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "text",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "basic",
+                        "isDynamic": false
+                    }
+                ]
             }
-        }
+        ]
     },
-    "endpoints": [
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-1/routes/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-1/sherpa.module.ts",
-                "context": {
-                    "test": "Hello World"
-                },
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/module/m1/index.ts",
-                "config": {
-                    "name": "pass-primary-1"
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "module",
-                    "isDynamic": false
-                },
-                {
-                    "name": "m1",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/routes/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/sherpa.module.ts",
-                "context": {
-                    "test": true
-                },
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/module/m2/index.ts",
-                "config": {
-                    "name": "pass-primary-2"
-                },
-                "hasContextSchema": true
-            },
-            "segments": [
-                {
-                    "name": "module",
-                    "isDynamic": false
-                },
-                {
-                    "name": "m2",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/routes/[id]/path/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/modules/pass-primary-2/sherpa.module.ts",
-                "context": {
-                    "test": true
-                },
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/module/m2/index.ts",
-                "config": {
-                    "name": "pass-primary-2"
-                },
-                "hasContextSchema": true
-            },
-            "segments": [
-                {
-                    "name": "module",
-                    "isDynamic": false
-                },
-                {
-                    "name": "m2",
-                    "isDynamic": false
-                },
-                {
-                    "name": "id",
-                    "isDynamic": true
-                },
-                {
-                    "name": "path",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/index.ts",
-            "methods": [
-                "GET",
-                "POST",
-                "PUT",
-                "PATCH",
-                "DELETE"
-            ],
-            "module": {
-                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                "context": "foo",
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                "config": {
-                    "name": "."
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "regular",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                "context": "foo",
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                "config": {
-                    "name": "."
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "regular",
-                    "isDynamic": false
-                },
-                {
-                    "name": "dynamic-paths",
-                    "isDynamic": false
-                },
-                {
-                    "name": "testID",
-                    "isDynamic": true
-                },
-                {
-                    "name": "testID",
-                    "isDynamic": true
-                },
-                {
-                    "name": "page",
-                    "isDynamic": false
-                },
-                {
-                    "name": "pageID",
-                    "isDynamic": true
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/json/basic/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                "context": "foo",
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                "config": {
-                    "name": "."
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "regular",
-                    "isDynamic": false
-                },
-                {
-                    "name": "response",
-                    "isDynamic": false
-                },
-                {
-                    "name": "json",
-                    "isDynamic": false
-                },
-                {
-                    "name": "basic",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/none/basic/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                "context": "foo",
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                "config": {
-                    "name": "."
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "regular",
-                    "isDynamic": false
-                },
-                {
-                    "name": "response",
-                    "isDynamic": false
-                },
-                {
-                    "name": "none",
-                    "isDynamic": false
-                },
-                {
-                    "name": "basic",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/redirect/basic/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                "context": "foo",
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                "config": {
-                    "name": "."
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "regular",
-                    "isDynamic": false
-                },
-                {
-                    "name": "response",
-                    "isDynamic": false
-                },
-                {
-                    "name": "redirect",
-                    "isDynamic": false
-                },
-                {
-                    "name": "basic",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                "context": "foo",
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                "config": {
-                    "name": "."
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "regular",
-                    "isDynamic": false
-                },
-                {
-                    "name": "response",
-                    "isDynamic": false
-                },
-                {
-                    "name": "redirect",
-                    "isDynamic": false
-                },
-                {
-                    "name": "success",
-                    "isDynamic": false
-                }
-            ]
-        },
-        {
-            "filepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/routes/regular/response/text/basic/index.ts",
-            "methods": [
-                "GET"
-            ],
-            "module": {
-                "filepath": "C:\\Users\\sellerew\\Desktop\\libraries\\sherpa-core\\tests\\servers\\pass-primary",
-                "context": "foo",
-                "contextFilepath": "C:/Users/sellerew/Desktop/libraries/sherpa-core/tests/servers/pass-primary/sherpa.server.ts",
-                "config": {
-                    "name": "."
-                },
-                "hasContextSchema": false
-            },
-            "segments": [
-                {
-                    "name": "regular",
-                    "isDynamic": false
-                },
-                {
-                    "name": "response",
-                    "isDynamic": false
-                },
-                {
-                    "name": "text",
-                    "isDynamic": false
-                },
-                {
-                    "name": "basic",
-                    "isDynamic": false
-                }
-            ]
-        }
-    ],
     "errors": []
 }
