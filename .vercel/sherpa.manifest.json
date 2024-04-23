@@ -1,5 +1,5 @@
 {
-    "created": "2024-04-23T12:44:31.851Z",
+    "created": "2024-04-23T17:02:26.453Z",
     "options": {
         "input": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
         "output": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
@@ -7,7 +7,7 @@
         "developer": {
             "bundler": {
                 "esbuild": {
-                    "minify": true
+                    "minify": false
                 }
             },
             "environment": {
