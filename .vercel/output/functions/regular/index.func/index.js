@@ -7,9 +7,6 @@ var __export = (target, all) => {
 // <define:process.env>
 var define_process_env_default = { ALLUSERSPROFILE: "C:\\ProgramData", APPDATA: "C:\\Users\\sellerew\\AppData\\Roaming", CHROME_CRASHPAD_PIPE_NAME: "\\\\.\\pipe\\crashpad_5260_QXKKAVDALHTHFOPL", CommonProgramFiles: "C:\\Program Files\\Common Files", "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files", CommonProgramW6432: "C:\\Program Files\\Common Files", COMPUTERNAME: "RHIT-R90Y2R4M", ComSpec: "C:\\WINDOWS\\system32\\cmd.exe", DriverData: "C:\\Windows\\System32\\Drivers\\DriverData", EFC_10144: 1, FPS_BROWSER_APP_PROFILE_STRING: "Internet Explorer", FPS_BROWSER_USER_PROFILE_STRING: "Default", HOMEDRIVE: "C:", HOMEPATH: "\\Users\\sellerew", LOCALAPPDATA: "C:\\Users\\sellerew\\AppData\\Local", LOGONSERVER: "\\\\RHIT-R90Y2R4M", NUMBER_OF_PROCESSORS: 12, OneDrive: "C:\\Users\\sellerew\\OneDrive - Rose-Hulman Institute of Technology", OneDriveCommercial: "C:\\Users\\sellerew\\OneDrive - Rose-Hulman Institute of Technology", ORIGINAL_XDG_CURRENT_DESKTOP: "undefined", OS: "Windows_NT", Path: "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\WindowsPowerShell\\Scripts;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Users\\sellerew\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\sellerew\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\sellerew\\AppData\\Roaming\\npm;C:\\Users\\sellerew\\AppData\\Local\\GitHubDesktop\\bin;", PATHEXT: ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL", PROCESSOR_ARCHITECTURE: "AMD64", PROCESSOR_IDENTIFIER: "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", PROCESSOR_LEVEL: 6, PROCESSOR_REVISION: "9e0a", ProgramData: "C:\\ProgramData", ProgramFiles: "C:\\Program Files", "ProgramFiles(x86)": "C:\\Program Files (x86)", ProgramW6432: "C:\\Program Files", PSModulePath: "C:\\Users\\sellerew\\OneDrive - Rose-Hulman Institute of Technology\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules", PUBLIC: "C:\\Users\\Public", SESSIONNAME: "Console", SystemDrive: "C:", SystemRoot: "C:\\WINDOWS", TEMP: "C:\\Users\\sellerew\\AppData\\Local\\Temp", TMP: "C:\\Users\\sellerew\\AppData\\Local\\Temp", UATDATA: "C:\\Windows\\CCM\\UATData\\D9F8C395-CAB8-491d-B8AC-179A1FE1BE77", USERDNSDOMAIN: "rose-hulman.edu", USERDOMAIN: "ROSE-HULMAN", USERDOMAIN_ROAMINGPROFILE: "ROSE-HULMAN", USERNAME: "sellerew", USERPROFILE: "C:\\Users\\sellerew", windir: "C:\\WINDOWS", ZES_ENABLE_SYSMAN: 1, TERM_PROGRAM: "vscode", TERM_PROGRAM_VERSION: "1.88.1", LANG: "en_US.UTF-8", COLORTERM: "truecolor", GIT_ASKPASS: "c:\\Users\\sellerew\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh", VSCODE_GIT_ASKPASS_NODE: "C:\\Users\\sellerew\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe", VSCODE_GIT_ASKPASS_EXTRA_ARGS: "", VSCODE_GIT_ASKPASS_MAIN: "c:\\Users\\sellerew\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js", VSCODE_GIT_IPC_HANDLE: "\\\\.\\pipe\\vscode-git-668f0b53a1-sock", VSCODE_INJECTION: 1, foo: 3, SHERPA_PLATFORM: "Vercel" };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/internal/handler/index.js
-import fs from "fs";
-
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/compiler/models.js
 var EXPORT_VARIABLES_METHODS = ["GET", "POST", "PATCH", "DELETE", "PUT"];
 var EXPORT_VARIABLES = [...EXPORT_VARIABLES_METHODS];
@@ -328,10 +325,10 @@ var ResponseBuilder = class _ResponseBuilder {
 };
 
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/internal/handler/index.js
-async function Handler(endpoints, view, context2, request) {
-  if (view && request.method == Method.GET) {
+async function Handler(endpoints, view2, context2, request) {
+  if (view2 && request.method == Method.GET) {
     try {
-      return ResponseBuilder.HTML(fs.readFileSync(view, "utf8"));
+      return ResponseBuilder.HTML(decodeURIComponent(view2));
     } catch (error) {
       return ResponseBuilder.text(error.message, { status: 500 });
     }
@@ -707,13 +704,12 @@ var sherpa_server_default = SherpaJS.New.server({
 });
 
 // <stdin>
-var dirname = import.meta.dirname;
-var view_filepath = null;
+var view = "";
 var context = sherpa_server_default.context;
 var segments = [{ "name": "regular", "isDynamic": false }];
 async function index(nativeRequest, event) {
   let req = await RequestVercel(nativeRequest, segments);
-  let res = await Handler(regular_exports, view_filepath, context, req);
+  let res = await Handler(regular_exports, view, context, req);
   return ResponseVercel(req, res);
 }
 export {

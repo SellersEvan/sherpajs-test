@@ -4,9 +4,6 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/internal/handler/index.js
-import fs from "fs";
-
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/compiler/models.js
 var EXPORT_VARIABLES_METHODS = ["GET", "POST", "PATCH", "DELETE", "PUT"];
 var EXPORT_VARIABLES = [...EXPORT_VARIABLES_METHODS];
@@ -325,10 +322,10 @@ var ResponseBuilder = class _ResponseBuilder {
 };
 
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/internal/handler/index.js
-async function Handler(endpoints, view, context2, request) {
-  if (view && request.method == Method.GET) {
+async function Handler(endpoints, view2, context2, request) {
+  if (view2 && request.method == Method.GET) {
     try {
-      return ResponseBuilder.HTML(fs.readFileSync(view, "utf8"));
+      return ResponseBuilder.HTML(decodeURIComponent(view2));
     } catch (error) {
       return ResponseBuilder.text(error.message, { status: 500 });
     }
@@ -672,13 +669,12 @@ var sherpa_server_default = SherpaJS.New.server({
 });
 
 // <stdin>
-var dirname = import.meta.dirname;
-var view_filepath = null;
+var view = "";
 var context = sherpa_server_default.context;
 var segments = [{ "name": "regular", "isDynamic": false }, { "name": "response", "isDynamic": false }, { "name": "text", "isDynamic": false }, { "name": "basic", "isDynamic": false }];
 async function index(nativeRequest, event) {
   let req = await RequestVercel(nativeRequest, segments);
-  let res = await Handler(basic_exports, view_filepath, context, req);
+  let res = await Handler(basic_exports, view, context, req);
   return ResponseVercel(req, res);
 }
 export {

@@ -4,12 +4,6 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// <stdin>
-import path from "path";
-
-// /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/internal/handler/index.js
-import fs from "fs";
-
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/compiler/models.js
 var EXPORT_VARIABLES_METHODS = ["GET", "POST", "PATCH", "DELETE", "PUT"];
 var EXPORT_VARIABLES = [...EXPORT_VARIABLES_METHODS];
@@ -328,10 +322,10 @@ var ResponseBuilder = class _ResponseBuilder {
 };
 
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/internal/handler/index.js
-async function Handler(endpoints, view, context2, request) {
-  if (view && request.method == Method.GET) {
+async function Handler(endpoints, view2, context2, request) {
+  if (view2 && request.method == Method.GET) {
     try {
-      return ResponseBuilder.HTML(fs.readFileSync(view, "utf8"));
+      return ResponseBuilder.HTML(decodeURIComponent(view2));
     } catch (error) {
       return ResponseBuilder.text(error.message, { status: 500 });
     }
@@ -405,9 +399,9 @@ function applyRedirectHeaders(request, response) {
     let protocol = host.toLowerCase().includes("localhost") ? "http" : "https";
     let origin = `${protocol}://${host}`;
     let url = new OriginURL(request.url, origin);
-    let path2 = url.origin + url.pathname;
-    path2 = !path2.endsWith("/") ? `${path2}/` : path2;
-    response.headers.set("Location", new OriginURL(response.headers.get("Location"), path2).href);
+    let path = url.origin + url.pathname;
+    path = !path.endsWith("/") ? `${path}/` : path;
+    response.headers.set("Location", new OriginURL(response.headers.get("Location"), path).href);
   }
 }
 
@@ -682,13 +676,12 @@ var sherpa_server_default = SherpaJS.New.server({
 });
 
 // <stdin>
-var dirname = import.meta.dirname;
-var view_filepath = path.join(dirname, "./view.html");
+var view = "%3Chtml%3E%0D%0A%20%20%20%20%3Chead%3E%0D%0A%20%20%20%20%20%20%20%20%3Ctitle%3EHello%3C%2Ftitle%3E%0D%0A%20%20%20%20%3C%2Fhead%3E%0D%0A%20%20%20%20%3Cbody%3E%0D%0A%20%20%20%20%20%20%20%20%3Ch1%3EHello%2C%20world!%3C%2Fh1%3E%0D%0A%20%20%20%20%3C%2Fbody%3E%0D%0A%3C%2Fhtml%3E";
 var context = sherpa_server_default.context;
 var segments = [{ "name": "regular", "isDynamic": false }, { "name": "response", "isDynamic": false }, { "name": "html", "isDynamic": false }];
 async function index(nativeRequest, event) {
   let req = await RequestVercel(nativeRequest, segments);
-  let res = await Handler(html_exports, view_filepath, context, req);
+  let res = await Handler(html_exports, view, context, req);
   return ResponseVercel(req, res);
 }
 export {
