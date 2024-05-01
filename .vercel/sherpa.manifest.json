@@ -1,18 +1,18 @@
 {
-    "created": "2024-04-23T17:11:59.620Z",
+    "created": "2024-05-01T13:45:52.546Z",
     "options": {
-        "input": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-        "output": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+        "input": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+        "output": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
         "bundler": "Vercel",
         "developer": {
             "bundler": {
                 "esbuild": {
-                    "minify": true
+                    "minify": false
                 }
             },
             "environment": {
                 "files": [
-                    "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/.env"
+                    "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/.env"
                 ],
                 "variables": {}
             }
@@ -33,7 +33,7 @@
                             "context": {
                                 "test": "Hello World"
                             },
-                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m1/index.ts",
+                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m1/index.ts",
                             "instance": {
                                 "name": "pass-primary-1"
                             }
@@ -62,7 +62,7 @@
                             "context": {
                                 "test": true
                             },
-                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m2/index.ts",
                             "instance": {
                                 "name": "pass-primary-2"
                             }
@@ -91,7 +91,7 @@
                                     "context": {
                                         "test": true
                                     },
-                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m2/index.ts",
                                     "instance": {
                                         "name": "pass-primary-2"
                                     }
@@ -121,7 +121,7 @@
             },
             "/regular": {
                 ".": {
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/index.ts",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/index.ts",
                     "methods": [
                         "GET",
                         "POST",
@@ -130,10 +130,10 @@
                         "DELETE"
                     ],
                     "module": {
-                        "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                        "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                         "context": "foo",
-                        "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                        "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                         "instance": {
                             "name": "."
                         }
@@ -151,15 +151,15 @@
                             "/page": {
                                 "/[pageID]": {
                                     ".": {
-                                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
+                                        "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
                                         "methods": [
                                             "GET"
                                         ],
                                         "module": {
-                                            "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                                            "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                            "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                            "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                                             "context": "foo",
-                                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                            "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                                             "instance": {
                                                 "name": "."
                                             }
@@ -197,18 +197,50 @@
                     }
                 },
                 "/response": {
+                    "/html": {
+                        ".": {
+                            "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.ts",
+                            "viewFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.html",
+                            "methods": [
+                                "POST"
+                            ],
+                            "module": {
+                                "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                "context": "foo",
+                                "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
+                                "instance": {
+                                    "name": "."
+                                }
+                            },
+                            "segments": [
+                                {
+                                    "name": "regular",
+                                    "isDynamic": false
+                                },
+                                {
+                                    "name": "response",
+                                    "isDynamic": false
+                                },
+                                {
+                                    "name": "html",
+                                    "isDynamic": false
+                                }
+                            ]
+                        }
+                    },
                     "/json": {
                         "/basic": {
                             ".": {
-                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/json/basic/index.ts",
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/json/basic/index.ts",
                                 "methods": [
                                     "GET"
                                 ],
                                 "module": {
-                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                                     "context": "foo",
-                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                                     "instance": {
                                         "name": "."
                                     }
@@ -237,15 +269,15 @@
                     "/none": {
                         "/basic": {
                             ".": {
-                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/none/basic/index.ts",
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/none/basic/index.ts",
                                 "methods": [
                                     "GET"
                                 ],
                                 "module": {
-                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                                     "context": "foo",
-                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                                     "instance": {
                                         "name": "."
                                     }
@@ -274,15 +306,15 @@
                     "/redirect": {
                         "/basic": {
                             ".": {
-                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/basic/index.ts",
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/redirect/basic/index.ts",
                                 "methods": [
                                     "GET"
                                 ],
                                 "module": {
-                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                                     "context": "foo",
-                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                                     "instance": {
                                         "name": "."
                                     }
@@ -309,15 +341,15 @@
                         },
                         "/success": {
                             ".": {
-                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts",
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/redirect/success/index.ts",
                                 "methods": [
                                     "GET"
                                 ],
                                 "module": {
-                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                                     "context": "foo",
-                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                                     "instance": {
                                         "name": "."
                                     }
@@ -346,15 +378,15 @@
                     "/text": {
                         "/basic": {
                             ".": {
-                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/text/basic/index.ts",
+                                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/text/basic/index.ts",
                                 "methods": [
                                     "GET"
                                 ],
                                 "module": {
-                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                                     "context": "foo",
-                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                                     "instance": {
                                         "name": "."
                                     }
@@ -395,7 +427,7 @@
                     "context": {
                         "test": "Hello World"
                     },
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m1/index.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m1/index.ts",
                     "instance": {
                         "name": "pass-primary-1"
                     }
@@ -422,7 +454,7 @@
                     "context": {
                         "test": true
                     },
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m2/index.ts",
                     "instance": {
                         "name": "pass-primary-2"
                     }
@@ -449,7 +481,7 @@
                     "context": {
                         "test": true
                     },
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m2/index.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m2/index.ts",
                     "instance": {
                         "name": "pass-primary-2"
                     }
@@ -474,7 +506,7 @@
                 ]
             },
             {
-                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/index.ts",
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/index.ts",
                 "methods": [
                     "GET",
                     "POST",
@@ -483,10 +515,10 @@
                     "DELETE"
                 ],
                 "module": {
-                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                     "context": "foo",
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                     "instance": {
                         "name": "."
                     }
@@ -499,15 +531,15 @@
                 ]
             },
             {
-                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts",
                 "methods": [
                     "GET"
                 ],
                 "module": {
-                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                     "context": "foo",
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                     "instance": {
                         "name": "."
                     }
@@ -540,15 +572,45 @@
                 ]
             },
             {
-                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/json/basic/index.ts",
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.ts",
+                "viewFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.html",
+                "methods": [
+                    "POST"
+                ],
+                "module": {
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "context": "foo",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
+                    "instance": {
+                        "name": "."
+                    }
+                },
+                "segments": [
+                    {
+                        "name": "regular",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "response",
+                        "isDynamic": false
+                    },
+                    {
+                        "name": "html",
+                        "isDynamic": false
+                    }
+                ]
+            },
+            {
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/json/basic/index.ts",
                 "methods": [
                     "GET"
                 ],
                 "module": {
-                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                     "context": "foo",
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                     "instance": {
                         "name": "."
                     }
@@ -573,15 +635,15 @@
                 ]
             },
             {
-                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/none/basic/index.ts",
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/none/basic/index.ts",
                 "methods": [
                     "GET"
                 ],
                 "module": {
-                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                     "context": "foo",
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                     "instance": {
                         "name": "."
                     }
@@ -606,15 +668,15 @@
                 ]
             },
             {
-                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/basic/index.ts",
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/redirect/basic/index.ts",
                 "methods": [
                     "GET"
                 ],
                 "module": {
-                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                     "context": "foo",
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                     "instance": {
                         "name": "."
                     }
@@ -639,15 +701,15 @@
                 ]
             },
             {
-                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts",
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/redirect/success/index.ts",
                 "methods": [
                     "GET"
                 ],
                 "module": {
-                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                     "context": "foo",
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                     "instance": {
                         "name": "."
                     }
@@ -672,15 +734,15 @@
                 ]
             },
             {
-                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/text/basic/index.ts",
+                "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/text/basic/index.ts",
                 "methods": [
                     "GET"
                 ],
                 "module": {
-                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
-                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary",
+                    "entry": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
+                    "filepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server",
                     "context": "foo",
-                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts",
+                    "contextFilepath": "/Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts",
                     "instance": {
                         "name": "."
                     }

@@ -4,6 +4,9 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
+// <stdin>
+import path from "path";
+
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/internal/handler/index.js
 import fs from "fs";
 
@@ -402,16 +405,16 @@ function applyRedirectHeaders(request, response) {
     let protocol = host.toLowerCase().includes("localhost") ? "http" : "https";
     let origin = `${protocol}://${host}`;
     let url = new OriginURL(request.url, origin);
-    let path = url.origin + url.pathname;
-    path = !path.endsWith("/") ? `${path}/` : path;
-    response.headers.set("Location", new OriginURL(response.headers.get("Location"), path).href);
+    let path2 = url.origin + url.pathname;
+    path2 = !path2.endsWith("/") ? `${path2}/` : path2;
+    response.headers.set("Location", new OriginURL(response.headers.get("Location"), path2).href);
   }
 }
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/json/basic/index.ts
-var basic_exports = {};
-__export(basic_exports, {
-  GET: () => GET
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.ts
+var html_exports = {};
+__export(html_exports, {
+  POST: () => POST
 });
 
 // /Users/sellerew/Desktop/libraries/SherpaJS/src/native/headers/index.ts
@@ -661,8 +664,8 @@ var SherpaJS = {
   New
 };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/json/basic/index.ts
-function GET() {
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.ts
+function POST() {
   return ResponseBuilder2.JSON({
     "string": "food",
     "number": 3,
@@ -680,12 +683,12 @@ var sherpa_server_default = SherpaJS.New.server({
 
 // <stdin>
 var dirname = import.meta.dirname;
-var view_filepath = null;
+var view_filepath = path.join(dirname, "./view.html");
 var context = sherpa_server_default.context;
-var segments = [{ "name": "regular", "isDynamic": false }, { "name": "response", "isDynamic": false }, { "name": "json", "isDynamic": false }, { "name": "basic", "isDynamic": false }];
+var segments = [{ "name": "regular", "isDynamic": false }, { "name": "response", "isDynamic": false }, { "name": "html", "isDynamic": false }];
 async function index(nativeRequest, event) {
   let req = await RequestVercel(nativeRequest, segments);
-  let res = await Handler(basic_exports, view_filepath, context, req);
+  let res = await Handler(html_exports, view_filepath, context, req);
   return ResponseVercel(req, res);
 }
 export {
