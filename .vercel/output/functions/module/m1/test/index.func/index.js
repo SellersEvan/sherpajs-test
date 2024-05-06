@@ -1,9 +1,3 @@
-var __defProp = Object.defineProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-
 // /Users/sellerew/Desktop/libraries/SherpaJS/dist/src/compiler/models.js
 var EXPORT_VARIABLES_METHODS = ["GET", "POST", "PATCH", "DELETE", "PUT"];
 var EXPORT_VARIABLES = [...EXPORT_VARIABLES_METHODS];
@@ -405,11 +399,15 @@ function applyRedirectHeaders(request, response) {
   }
 }
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts
-var pageID_exports = {};
-__export(pageID_exports, {
-  GET: () => GET
-});
+// /Users/sellerew/Desktop/libraries/SherpaJS/src/compiler/models.ts
+var EXPORT_VARIABLES_METHODS2 = ["GET", "POST", "PATCH", "DELETE", "PUT"];
+var EXPORT_VARIABLES2 = [...EXPORT_VARIABLES_METHODS2];
+var CreateModuleInterface2 = class {
+  context;
+  constructor(context2) {
+    this.context = context2;
+  }
+};
 
 // /Users/sellerew/Desktop/libraries/SherpaJS/src/native/headers/index.ts
 var IHeaders2 = class _IHeaders {
@@ -482,161 +480,11 @@ var IHeaders2 = class _IHeaders {
   }
 };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/src/native/model.ts
-var CONTENT_TYPE2 = {
-  ["JSON" /* JSON */]: "application/json",
-  ["Text" /* Text */]: "text/plain",
-  ["HTML" /* HTML */]: "text/html",
-  ["None" /* None */]: void 0
-};
-
-// /Users/sellerew/Desktop/libraries/SherpaJS/src/native/response/status-text.ts
-var STATUS_TEXT2 = {
-  100: "Continue",
-  101: "Switching Protocols",
-  102: "Processing",
-  103: "Early Hints",
-  200: "OK",
-  201: "Created",
-  202: "Accepted",
-  203: "Non-Authoritative Information",
-  204: "No Content",
-  205: "Reset Content",
-  206: "Partial Content",
-  207: "Multi-Status",
-  208: "Already Reported",
-  226: "IM Used",
-  300: "Multiple Choices",
-  301: "Moved Permanently",
-  302: "Found",
-  303: "See Other",
-  304: "Not Modified",
-  307: "Temporary Redirect",
-  308: "Permanent Redirect",
-  400: "Bad Request",
-  401: "Unauthorized",
-  402: "Payment Required",
-  403: "Forbidden",
-  404: "Not Found",
-  405: "Method Not Allowed",
-  406: "Not Acceptable",
-  407: "Proxy Authentication Required",
-  408: "Request Timeout",
-  409: "Conflict",
-  410: "Gone",
-  411: "Length Required",
-  412: "Precondition Failed",
-  413: "Payload Too Large",
-  414: "URI Too Long",
-  415: "Unsupported Media Type",
-  416: "Range Not Satisfiable",
-  417: "Expectation Failed",
-  418: "I'm a Teapot \u{1FAD6}",
-  421: "Misdirected Request",
-  422: "Unprocessable Entity",
-  423: "Locked",
-  424: "Failed Dependency",
-  425: "Too Early",
-  426: "Upgrade Required",
-  428: "Precondition Required",
-  429: "Too Many Requests",
-  431: "Request Header Fields Too Large",
-  451: "Unavailable For Legal Reasons",
-  500: "Internal Server Error",
-  501: "Not Implemented",
-  502: "Bad Gateway",
-  503: "Service Unavailable",
-  504: "Gateway Timeout",
-  505: "HTTP Version Not Supported",
-  506: "Variant Also Negotiates",
-  507: "Insufficient Storage",
-  508: "Loop Detected",
-  510: "Not Extended",
-  511: "Network Authentication Required"
-};
-
 // /Users/sellerew/Desktop/libraries/SherpaJS/src/native/response/index.ts
 var DEFAULT_OPTIONS2 = {
   headers: new IHeaders2(),
   status: 200
 };
-var ResponseBuilder2 = class _ResponseBuilder {
-  static new(options) {
-    let _options = _ResponseBuilder.defaultOptions("None" /* None */, options);
-    return {
-      status: _options.status,
-      statusText: _ResponseBuilder.getStatusText(_options.status),
-      headers: _options.headers,
-      body: void 0,
-      bodyType: "None" /* None */
-    };
-  }
-  static text(text, options) {
-    let _options = _ResponseBuilder.defaultOptions("Text" /* Text */, options);
-    return {
-      status: _options.status,
-      statusText: _ResponseBuilder.getStatusText(_options.status),
-      headers: _options.headers,
-      body: text.toString(),
-      bodyType: "Text" /* Text */
-    };
-  }
-  static JSON(JSON2, options) {
-    let _options = _ResponseBuilder.defaultOptions("JSON" /* JSON */, options);
-    let _isCallable = JSON2.toJSON && typeof JSON2.toJSON === "function";
-    return {
-      status: _options.status,
-      statusText: _ResponseBuilder.getStatusText(_options.status),
-      headers: _options.headers,
-      body: _isCallable ? JSON2.toJSON() : JSON2,
-      bodyType: "JSON" /* JSON */
-    };
-  }
-  static HTML(html, options) {
-    let _options = _ResponseBuilder.defaultOptions("HTML" /* HTML */, options);
-    return {
-      status: _options.status,
-      statusText: _ResponseBuilder.getStatusText(_options.status),
-      headers: _options.headers,
-      body: html,
-      bodyType: "HTML" /* HTML */
-    };
-  }
-  static redirect(redirect, options) {
-    let _options = _ResponseBuilder.defaultOptions("None" /* None */, options);
-    if (!_options.headers.has("Location")) {
-      _options.headers.set("Location", redirect);
-    }
-    return {
-      status: 302,
-      statusText: _ResponseBuilder.getStatusText(302),
-      headers: _options.headers,
-      body: void 0,
-      bodyType: "None" /* None */
-    };
-  }
-  static defaultOptions(bodyType, options) {
-    let _options = {
-      ...DEFAULT_OPTIONS2,
-      ...options
-    };
-    if (!_options.headers.has("Content-Type")) {
-      _options.headers.set("Content-Type", CONTENT_TYPE2[bodyType]);
-    }
-    return _options;
-  }
-  static getStatusText(status) {
-    let text = STATUS_TEXT2[status];
-    if (!text) {
-      throw new Error(`Status code "${status}" is invalid.`);
-    }
-    return text;
-  }
-};
-
-// /Users/sellerew/Desktop/libraries/SherpaJS/src/compiler/models.ts
-var EXPORT_VARIABLES_METHODS2 = ["GET", "POST", "PATCH", "DELETE", "PUT"];
-var EXPORT_VARIABLES2 = [...EXPORT_VARIABLES_METHODS2];
 
 // /Users/sellerew/Desktop/libraries/SherpaJS/src/instantiate/index.ts
 var New = class {
@@ -658,26 +506,25 @@ var SherpaJS = {
   New
 };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/dynamic-paths/[testID]/[testID]/page/[pageID]/index.ts
-function GET(request, context2) {
-  return ResponseBuilder2.JSON({
-    request,
-    context: context2
-  });
-}
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-1/sherpa.module.ts
+var sherpa_module_default = SherpaJS.New.module({
+  name: "pass-primary-1",
+  interface: CreateModuleInterface2
+});
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts
-var sherpa_server_default = SherpaJS.New.server({
-  context: "foo"
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m1/index.ts
+var m1_default = sherpa_module_default.load({
+  test: "Hello World"
 });
 
 // <stdin>
-var view = "";
-var context = sherpa_server_default.context;
-var segments = [{ "name": "regular", "isDynamic": false }, { "name": "dynamic-paths", "isDynamic": false }, { "name": "testID", "isDynamic": true }, { "name": "testID", "isDynamic": true }, { "name": "page", "isDynamic": false }, { "name": "pageID", "isDynamic": true }];
+var endpoint = {};
+var view = "%3Chtml%3E%0D%0A%20%20%20%20%3Chead%3E%0D%0A%20%20%20%20%20%20%20%20%3Ctitle%3EHello%3C%2Ftitle%3E%0D%0A%20%20%20%20%3C%2Fhead%3E%0D%0A%20%20%20%20%3Cbody%3E%0D%0A%20%20%20%20%20%20%20%20%3Ch1%3EHello%2C%20world!%3C%2Fh1%3E%0D%0A%20%20%20%20%3C%2Fbody%3E%0D%0A%3C%2Fhtml%3E";
+var context = m1_default.context;
+var segments = [{ "name": "module", "isDynamic": false }, { "name": "m1", "isDynamic": false }, { "name": "test", "isDynamic": false }];
 async function index(nativeRequest, event) {
   let req = await RequestVercel(nativeRequest, segments);
-  let res = await Handler(pageID_exports, view, context, req);
+  let res = await Handler(endpoint, view, context, req);
   return ResponseVercel(req, res);
 }
 export {

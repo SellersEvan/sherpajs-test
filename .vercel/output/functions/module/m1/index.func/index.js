@@ -678,7 +678,7 @@ var sherpa_module_default = SherpaJS.New.module({
   interface: CreateModuleInterface2
 });
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m1/index.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/m1/index.ts
 var m1_default = sherpa_module_default.load({
   test: "Hello World"
 });

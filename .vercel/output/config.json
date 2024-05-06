@@ -1,13 +1,25 @@
 {
-   "version": 3,
-   "routes": [
-      {
-         "src": "/module/m2/([^/]+)/path",
-         "dest": "/module/m2/[id]/path"
-      },
-      {
-         "src": "/regular/dynamic-paths/([^/]+)/([^/]+)/page/([^/]+)",
-         "dest": "/regular/dynamic-paths/[testID]/[testID]/page/[pageID]"
-      }
-   ]
+    "version": 3,
+    "routes": [
+        {
+            "src": "/module/([^/]+)",
+            "dest": "/module/[m2]"
+        },
+        {
+            "src": "/module/([^/]+)/([^/]+)/path",
+            "dest": "/module/[m2]/[id]/path"
+        },
+        {
+            "src": "/regular/dynamic-paths/([^/]+)/([^/]+)/page/([^/]+)",
+            "dest": "/regular/dynamic-paths/[testID]/[testID]/page/[pageID]"
+        },
+        {
+            "src": "/module/([^/]+)/image.jpg",
+            "dest": "/module/[m2]/image.jpg"
+        },
+        {
+            "src": "/module/([^/]+)/text.txt",
+            "dest": "/module/[m2]/text.txt"
+        }
+    ]
 }

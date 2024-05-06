@@ -405,7 +405,7 @@ function applyRedirectHeaders(request, response) {
   }
 }
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/redirect/success/index.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts
 var success_exports = {};
 __export(success_exports, {
   GET: () => GET
@@ -658,7 +658,7 @@ var SherpaJS = {
   New
 };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/redirect/success/index.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/redirect/success/index.ts
 function GET(request, context2) {
   return ResponseBuilder2.JSON({
     request,
@@ -666,7 +666,7 @@ function GET(request, context2) {
   });
 }
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts
 var sherpa_server_default = SherpaJS.New.server({
   context: "foo"
 });

@@ -405,9 +405,9 @@ function applyRedirectHeaders(request, response) {
   }
 }
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/[id]/path/index.ts
-var path_exports = {};
-__export(path_exports, {
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/index.ts
+var routes_exports = {};
+__export(routes_exports, {
   GET: () => GET
 });
 
@@ -664,7 +664,7 @@ var SherpaJS = {
   New
 };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/[id]/path/index.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/modules/pass-primary-2/routes/index.ts
 function GET(request, context2) {
   return ResponseBuilder2.JSON({
     request,
@@ -678,7 +678,7 @@ var sherpa_module_default = SherpaJS.New.module({
   interface: CreateModuleInterface2
 });
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/module/m2/index.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/module/[m2]/index.ts
 var m2_default = sherpa_module_default.load({
   test: true
 });
@@ -686,10 +686,10 @@ var m2_default = sherpa_module_default.load({
 // <stdin>
 var view = "";
 var context = m2_default.context;
-var segments = [{ "name": "module", "isDynamic": false }, { "name": "m2", "isDynamic": false }, { "name": "id", "isDynamic": true }, { "name": "path", "isDynamic": false }];
+var segments = [{ "name": "module", "isDynamic": false }, { "name": "m2", "isDynamic": true }];
 async function index(nativeRequest, event) {
   let req = await RequestVercel(nativeRequest, segments);
-  let res = await Handler(path_exports, view, context, req);
+  let res = await Handler(routes_exports, view, context, req);
   return ResponseVercel(req, res);
 }
 export {

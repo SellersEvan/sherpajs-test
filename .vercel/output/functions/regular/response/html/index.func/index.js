@@ -405,7 +405,7 @@ function applyRedirectHeaders(request, response) {
   }
 }
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/html/index.ts
 var html_exports = {};
 __export(html_exports, {
   POST: () => POST
@@ -658,7 +658,7 @@ var SherpaJS = {
   New
 };
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/routes/regular/response/html/index.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/routes/regular/response/html/index.ts
 function POST() {
   return ResponseBuilder2.JSON({
     "string": "food",
@@ -670,7 +670,7 @@ function POST() {
   });
 }
 
-// /Users/sellerew/Desktop/libraries/SherpaJS/tests/endpoints/server/sherpa.server.ts
+// /Users/sellerew/Desktop/libraries/SherpaJS/tests/servers/pass-primary/sherpa.server.ts
 var sherpa_server_default = SherpaJS.New.server({
   context: "foo"
 });
