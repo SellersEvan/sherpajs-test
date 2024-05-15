@@ -12,14 +12,6 @@
         {
             "src": "/regular/dynamic-paths/([^/]+)/([^/]+)/page/([^/]+)",
             "dest": "/regular/dynamic-paths/[testID]/[testID]/page/[pageID]"
-        },
-        {
-            "src": "/module/([^/]+)/image.jpg",
-            "dest": "/module/[m2]/image.jpg"
-        },
-        {
-            "src": "/module/([^/]+)/text.txt",
-            "dest": "/module/[m2]/text.txt"
         }
     ]
 }
